@@ -17,12 +17,12 @@ export default function Signup() {
   return (
     <AuthLayout>
       <h1 className="text-3xl text-center font-semibold tracking-tighter text-lime-700">
-        Hoş Geldin!
+        Welcome!
       </h1>
       <form onSubmit={handleSubmit(handleSignup)}>
         <div className="pt-4">
           <div className="flex justify-between gap-2 items-baseline pb-1">
-            <label htmlFor="nickname ">İsim Soyisim</label>
+            <label htmlFor="nickname ">Name - Last Name</label>
             <span className="text-sm font-medium text-red-600">
               {errors.name && errors.name.message.toString()}
             </span>
@@ -30,13 +30,13 @@ export default function Signup() {
           <input
             type="text"
             className="w-full h-10 px-2 border rounded-md border-gray-300"
-            {...register("name", { required: "Bu alan zorunlu" })}
+            {...register("name", { required: "You must fill this field" })}
           />
         </div>
 
         <div className="pt-4">
           <div className="flex justify-between gap-2 items-baseline pb-1">
-            <label htmlFor="nickname ">Kullanıcı adı</label>
+            <label htmlFor="nickname ">Nickname</label>
             <span className="text-sm font-medium text-red-600">
               {errors.nickname && errors.nickname.message.toString()}
             </span>
@@ -44,7 +44,7 @@ export default function Signup() {
           <input
             type="text"
             className="w-full h-10 px-2 border rounded-md border-gray-300"
-            {...register("nickname", { required: "Bu alan zorunlu" })}
+            {...register("nickname", { required: "You must fill this field" })}
           />
         </div>
 
@@ -59,10 +59,10 @@ export default function Signup() {
             type="email"
             className="w-full h-10 px-2 border rounded-md border-gray-300"
             {...register("email", {
-              required: "Bu alan zorunlu",
+              required: "You must fill this field",
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: "Geçerli bir email adresi girin",
+                message: "Enter a valid email address",
               },
             })}
           />
@@ -70,7 +70,7 @@ export default function Signup() {
 
         <div className="pt-4">
           <div className="flex justify-between gap-2 items-baseline pb-1">
-            <label htmlFor="password">Şifre</label>
+            <label htmlFor="password">Password</label>
             <span className="text-sm font-medium text-red-600">
               {errors.password && errors.password.message.toString()}
             </span>
@@ -86,7 +86,7 @@ export default function Signup() {
             type="submit"
             className="h-12 text-center block w-full rounded-lg bg-lime-700 text-white font-bold "
           >
-            GİRİŞ
+            Sign Up
           </button>
         </div>
       </form>
