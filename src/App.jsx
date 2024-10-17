@@ -3,10 +3,12 @@ import { Switch, Route } from "react-router-dom";
 import PageLayout from "./PageLayout";
 import Login from "./Login";
 import Signup from "./Signup";
+import { UserContexDepo } from "./UserContextDepo";
 
 function App() {
   return (
     <div>
+      <UserContexDepo>
       <Switch>
         <Route path="/login">
           <Login />
@@ -26,6 +28,7 @@ function App() {
           <PageLayout>Twit detail</PageLayout>
         </Route>
       </Switch>
+      </UserContexDepo>
     </div>
   );
 }

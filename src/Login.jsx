@@ -3,11 +3,15 @@ import AuthLayout from "./AuthLayout";
 import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "./UserContextDepo";
 
 export default function Login() {
   const { search } = useLocation();
   const values = queryString.parse(search);
   console.log(values.expiresIn, "***");
+
+  const {setUser, user} = useContext(UserContext);
 
   const {
     register,
@@ -27,12 +31,14 @@ export default function Login() {
     })
       .then((response) => {
         const token = response.data.token;
-        const decoded = jwtDecode(token);
-        console.log(decoded, "*****");
+        const decodedUser = jwtDecode(token);
+        setUser(decodedUser);
         localStorage.setItem("kiwitter_user", token);
       })
       .catch((error) => console.log(error));
   }
+
+  console.log("Şimdiki Kullanıcı", user);
 
   return (
     <AuthLayout>
