@@ -4,6 +4,7 @@ import PageLayout from "./PageLayout";
 import Login from "./Login";
 import Signup from "./Signup";
 import { UserContexDepo } from "./UserContextDepo";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
@@ -24,9 +25,9 @@ function App() {
         <Route path="/profile/:nick">
           <PageLayout>Profile page</PageLayout>
         </Route>
-        <Route path="/detail/:twitId">
-          <PageLayout>Twit detail</PageLayout>
-        </Route>
+        <PrivateRoute path="/detail/:twitId">
+            <PageLayout>Twit detail</PageLayout>
+        </PrivateRoute>
       </Switch>
       </UserContexDepo>
     </div>

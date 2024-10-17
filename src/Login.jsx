@@ -1,17 +1,21 @@
-import queryString from "query-string";
+//import queryString from "query-string";
 import AuthLayout from "./AuthLayout";
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "./UserContextDepo";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
-  const { search } = useLocation();
-  const values = queryString.parse(search);
-  console.log(values.expiresIn, "***");
+  // const { search } = useLocation();
+  // const values = queryString.parse(search);
+  // console.log(values.expiresIn, "***");
 
-  const {setUser, user} = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
+  let history = useHistory();
 
   const {
     register,
@@ -22,8 +26,6 @@ export default function Login() {
   });
 
   function handleLogin(data) {
-    console.log(data, "---");
-    console.log(data, "---");
     axios({
       method: "post",
       url: "https://kiwitter-node-77f5acb427c1.herokuapp.com/login",
@@ -34,11 +36,14 @@ export default function Login() {
         const decodedUser = jwtDecode(token);
         setUser(decodedUser);
         localStorage.setItem("kiwitter_user", token);
+        toast.success("Login successfull. Redirecting to homepage.");
+
+        setTimeout(() => {
+          history.push("/")
+        }, 3000);
       })
       .catch((error) => console.log(error));
   }
-
-  console.log("Şimdiki Kullanıcı", user);
 
   return (
     <AuthLayout>

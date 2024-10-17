@@ -1,5 +1,7 @@
 import AuthLayout from "./AuthLayout";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 export default function Signup() {
   const {
@@ -12,6 +14,17 @@ export default function Signup() {
 
   function handleSignup(data) {
     console.log(data, "---");
+    axios({
+      method: "post",
+      url: "https://kiwitter-node-77f5acb427c1.herokuapp.com/users/signup",
+      data: data,
+    })
+      .then((response) => {
+        const token = response.data.token;
+        const decoded = jwtDecode(token);
+        console.log(decoded, "aftersignup");
+      })
+      .catch((error) => console.log(error));
   }
 
   return (
