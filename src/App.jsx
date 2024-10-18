@@ -5,6 +5,9 @@ import Login from "./Login";
 import Signup from "./Signup";
 import { UserContexDepo } from "./UserContextDepo";
 import PrivateRoute from "./PrivateRoute";
+import MainPage from "./MainPage";
+import UserTwits from "./UserTwits";
+
 
 function App() {
   return (
@@ -20,11 +23,13 @@ function App() {
 
         <Route path="/" exact>
           {/* /?variant=most_liked */}
-          <PageLayout>Home</PageLayout>
+          <MainPage />
         </Route>
-        <Route path="/profile/:nick">
-          <PageLayout>Profile page</PageLayout>
+
+        <Route path="/profile/:nickname">
+          <UserTwits />
         </Route>
+        
         <PrivateRoute path="/detail/:twitId">
             <PageLayout>Twit detail</PageLayout>
         </PrivateRoute>

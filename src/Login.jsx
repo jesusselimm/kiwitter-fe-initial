@@ -35,7 +35,7 @@ export default function Login() {
         const token = response.data.token;
         const decodedUser = jwtDecode(token);
         setUser(decodedUser);
-        localStorage.setItem("kiwitter_user", token);
+        localStorage.setItem("kiwitter-user", token);
         toast.success("Login successfull. Redirecting to homepage.");
 
         setTimeout(() => {
